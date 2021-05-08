@@ -89,6 +89,12 @@ func Fatal(v ...interface{}) {
 	os.Exit(1)
 }
 
+// Fatal wrap log.Fatalf
+func Fatalf(format string, v ...interface{}) {
+	log.Output(2, fmt.Sprintf(format, v...))
+	os.Exit(1)
+}
+
 // Printf wraps log.Printf.
 func Printf(format string, v ...interface{}) {
 	log.Output(2, fmt.Sprintf(format, v...))
