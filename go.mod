@@ -1,4 +1,4 @@
-module github.com/8i8/etc/log
+module github.com/8i8/lib/log
 
 go 1.16
 

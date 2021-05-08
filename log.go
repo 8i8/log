@@ -1,4 +1,4 @@
-package app
+package log
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"os"
 	"sync/atomic"
 
-	"github.com/8i8/etc/term"
+	"github.com/8i8/term"
 	"github.com/google/uuid"
 )
 
