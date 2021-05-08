@@ -100,6 +100,11 @@ func Printf(format string, v ...interface{}) {
 	log.Output(2, fmt.Sprintf(format, v...))
 }
 
+// Println wraps log.Println.
+func Println(v ...interface{}) {
+	log.Output(2, fmt.Sprintln(v...))
+}
+
 // User provides a standardised logging output.
 func User(id interface{}, action, fname, event string, args ...interface{}) {
 	const lev = "USER"
