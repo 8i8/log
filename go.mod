@@ -2,7 +2,7 @@ module github.com/8i8/lib/log
 
 go 1.16
 
-replace github.com/8i8/lib/term v0.0.1 => ../term
+replace github.com/8i8/lib/term v0.0.1 => github.com/8i8/term v0.0.1
 
 require (
 	github.com/8i8/lib/term v0.0.1
