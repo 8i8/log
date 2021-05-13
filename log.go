@@ -3,7 +3,6 @@ package log
 import (
 	"fmt"
 	"log"
-	"net"
 	"net/url"
 	"os"
 	"sync/atomic"
@@ -20,7 +19,7 @@ func init() {
 // Identifier defines an interface for gathering displaying user id.
 type Identifier interface {
 	URL() *url.URL
-	IP() net.IP
+	IP() string
 	SID() uuid.UUID
 }
 
