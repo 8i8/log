@@ -172,25 +172,25 @@ func write(depth int, id interface{}, lev, action, fname, event string, args ...
 		}
 	}
 	if ok {
-		_, _, path := ident.IP().String(), ident.SID().String(), ident.URL().Path
+		path, host, ip := ident.URL().Path, ident.URL().Host, ident.IP()
 		switch len(args) {
 		case 0:
 			log.Output(depth, fmt.Sprintf(
-				"%s:[path:%s][action:%s][fname:%s][event:%s]",
-				colour.White(lev), path, action, fname, event))
+				"%s:[host:%s][path:%s][ip:%s][action:%s][fname:%s][event:%s]",
+				colour.White(lev), host, path, ip, action, fname, event))
 		case 2:
 			log.Output(depth, fmt.Sprintf(
-				"%s:[path:%s][action:%s][fname:%s][event:%s][%s:%v]",
-				colour.White(lev), path, action, fname, event, args[0], args[1]))
+				"%s:[host:%s][path:%s][ip:%s][action:%s][fname:%s][event:%s][%s:%v]",
+				colour.White(lev), host, path, ip, action, fname, event, args[0], args[1]))
 		case 4:
 			log.Output(depth, fmt.Sprintf(
-				"%s:[path:%s][action:%s][fname:%s][event:%s][%s:%v][%s:%v]",
-				colour.White(lev), path, action, fname, event, args[0], args[1],
+				"%s:[host:%s][path:%s][ip:%s][action:%s][fname:%s][event:%s][%s:%v][%s:%v]",
+				colour.White(lev), host, path, ip, action, fname, event, args[0], args[1],
 				args[2], args[3]))
 		case 6:
 			log.Output(depth, fmt.Sprintf(
-				"%s:[path:%s][action:%s][fname:%s][event:%s][%s:%v][%s:%v][%s:%v]",
-				colour.White(lev), path, action, fname, event, args[0], args[1],
+				"%s:[host:%s][path:%s][ip:%s][action:%s][fname:%s][event:%s][%s:%v][%s:%v][%s:%v]",
+				colour.White(lev), host, path, ip, action, fname, event, args[0], args[1],
 				args[2], args[3], args[4], args[5]))
 		default:
 			log.Output(2, fmt.Sprint("default reached in log write() ok"))
