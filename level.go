@@ -37,9 +37,9 @@ func Is(v Level) bool {
 	return false
 }
 
-// Level returns true of the given level is above the loggers
+// Is returns true of the given level is above the loggers
 // loglevel.
-func (l *Logger) Level(v Level) bool {
+func (l *Logger) Is(v Level) bool {
 	if uint64(v) >= atomic.LoadUint64((*uint64)(&l.level)) {
 		return true
 	}
