@@ -16,13 +16,13 @@ func Print(v ...interface{}) {
 	log.Output(2, fmt.Sprint(v...))
 }
 
-// Fatal wrap log.Fatal
+// Fatal wraps log.Fatal
 func Fatal(v ...interface{}) {
 	log.Output(2, fmt.Sprint(v...))
 	os.Exit(1)
 }
 
-// Fatal wrap log.Fatalf
+// Fatalf wraps log.Fatalf
 func Fatalf(format string, v ...interface{}) {
 	log.Output(2, fmt.Sprintf(format, v...))
 	os.Exit(1)
