@@ -30,7 +30,7 @@ var (
 	_LogLevel_index_0 = [...]uint8{0, 5, 10}
 )
 
-func (i LogLevel) String() string {
+func (i Level) String() string {
 	switch {
 	case 1 <= i && i <= 2:
 		i -= 1
