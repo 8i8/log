@@ -7,9 +7,8 @@ import (
 	"github.com/8i8/term"
 )
 
-// colour is the default output colour that is returned to after text
-// has been wrapped with a colour tag.
-var colour = term.White
+// colour holds a colour from the term library.
+var colour term.Colour
 
 // User provides a standardised logging output.
 func User(id interface{}, action, fname, event string, args ...interface{}) {

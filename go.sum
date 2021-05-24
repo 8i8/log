@@ -1,4 +1,11 @@
 github.com/8i8/term v0.0.3 h1:ZakPpi/2fRjgqCcbTveTPP2dXnwHu9ZzBdwVAse0JII=
 github.com/8i8/term v0.0.3/go.mod h1:Ad0haYOuMpn4AcPSB4wGcbTtTlMjEucxMmKiX26EZLE=
+github.com/8i8/term v0.0.4 h1:9HG2JSVuI+rC1mZA/kkRhsdiTcu4B2vL1yoPu2LmqEM=
+github.com/8i8/term v0.0.4/go.mod h1:YoteUJ8PCEFLlQJAEvD1/GLFY6r2G7Zr2ChirMWkwVk=
 github.com/google/uuid v1.2.0 h1:qJYtXnJRWmpe7m/3XlyhrsLrEURqHRM2kxzoxXqyUDs=
 github.com/google/uuid v1.2.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+golang.org/x/sys v0.0.0-20201119102817-f84b799fce68/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/sys v0.0.0-20210521203332-0cec03c779c1 h1:lCnv+lfrU9FRPGf8NeRuWAAPjNnema5WtBinMgs1fD8=
+golang.org/x/sys v0.0.0-20210521203332-0cec03c779c1/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+golang.org/x/term v0.0.0-20210503060354-a79de5458b56 h1:b8jxX3zqjpqb2LklXPzKSGJhzyxCOZSz8ncv8Nv+y7w=
+golang.org/x/term v0.0.0-20210503060354-a79de5458b56/go.mod h1:tfny5GFUkzUvx4ps4ajbZsCe5lw1metzhBm9T3x7oIY=
