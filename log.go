@@ -39,7 +39,7 @@ type Logger struct {
 	// NONE stops all logging, useful sometimes whilst testing.
 	level Level
 	// Colour defines the default text colour of the log output.
-	Colour uint8
+	Colour uint16
 }
 
 // Level stors the logging level of a logger.
@@ -62,6 +62,6 @@ func New(out io.Writer, prefix string, flag int) *Logger {
 	return &Logger{
 		Logger: log.New(out, prefix, flag),
 		level:  USER,
-		Colour: uint8(term.White),
+		Colour: uint16(term.Reset),
 	}
 }
