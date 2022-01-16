@@ -28,6 +28,12 @@ const (
 	LstdFlags     = Ldate | Ltime // initial values for the standard logger
 )
 
+// SetFlags sets the output flags for the standard logger.
+// The flag bits are Ldate, Ltime, and so on.
+func SetFlags(flag int) {
+	log.SetFlags(flag)
+}
+
 // SetFlags wraps the standard libraries logger SetFlags function..
 func (l *Logger) SetFlags(f int) {
 	l.Logger.SetFlags(f)
@@ -58,10 +64,4 @@ func Printf(format string, v ...interface{}) {
 // Println wraps log.Println.
 func Println(v ...interface{}) {
 	log.Output(2, fmt.Sprintln(v...))
-}
-
-// SetFlags sets the output flags for the standard logger.
-// The flag bits are Ldate, Ltime, and so on.
-func SetFlags(flags int) {
-	log.SetFlags(flags)
 }
