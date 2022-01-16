@@ -30,13 +30,25 @@ const (
 
 // SetFlags sets the output flags for the standard logger.
 // The flag bits are Ldate, Ltime, and so on.
-func SetFlags(flag int) {
+func SetFlags(flags int) {
 	log.SetFlags(flag)
 }
 
+// Flags returns the output flags for the standard logger.
+// The flag bits are Ldate, Ltime, and so on.
+func Flags() int {
+	return log.Flags()
+}
+
 // SetFlags wraps the standard libraries logger SetFlags function..
-func (l *Logger) SetFlags(f int) {
-	l.Logger.SetFlags(f)
+func (l *Logger) SetFlags(flags int) {
+	l.Logger.SetFlags(flags)
+}
+
+// Flags returns the output flags for the logger.
+// The flag bits are Ldate, Ltime, and so on.
+func (l *Logger) Flags() int {
+	return l.Logger.Flags()
 }
 
 // Print wraps log.Print.
