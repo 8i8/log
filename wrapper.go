@@ -31,7 +31,7 @@ const (
 // SetFlags sets the output flags for the standard logger.
 // The flag bits are Ldate, Ltime, and so on.
 func SetFlags(flags int) {
-	log.SetFlags(flag)
+	log.SetFlags(flags)
 }
 
 // Flags returns the output flags for the standard logger.
