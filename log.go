@@ -54,7 +54,7 @@ type Identifier interface {
 
 func init() {
 	// Set the default global log setting.
-	// log.SetFlags(log.Llongfile)
+	log.SetFlags(0)
 }
 
 // New returns a LogLevel variable with your provided logger attached.
