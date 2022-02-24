@@ -10,64 +10,78 @@ import (
 // colour holds a colour from the term library.
 var colour term.Colour
 
+// errToString returns a string when given either an error or a string.
+func errToString(v interface{}) (str string) {
+	switch t := v.(type) {
+	case error:
+		str = t.Error()
+	case string:
+		str = t
+	default:
+		panic("unknown type")
+	}
+	return
+}
+
 // User provides a standardised logging output.
-func User(id interface{}, action, fname, event string, args ...interface{}) {
+func User(id interface{}, action, fname string, event interface{}, args ...interface{}) {
 	const lev = "USER"
 	write(3, id, lev, action, fname, event, args...)
 }
 
 // User provides a standardised logging output.
-func (l Logger) User(id interface{}, action, fname, event string, args ...interface{}) {
+func (l Logger) User(id interface{}, action, fname string, event interface{}, args ...interface{}) {
 	const lev = "USER"
 	writelog(3, id, lev, action, fname, event, args...)
 }
 
 // Info provides a standardised logging output.
-func Info(id interface{}, action, fname, event string, args ...interface{}) {
+func Info(id interface{}, action, fname string, event interface{}, args ...interface{}) {
 	const lev = "INFO"
 	write(3, id, lev, action, fname, event, args...)
 }
 
 // Debug provides a standardised logging output.
-func Debug(id interface{}, action, fname, event string, args ...interface{}) {
+func Debug(id interface{}, action, fname string, event interface{}, args ...interface{}) {
 	const lev = "DEBUG"
 	write(3, id, lev, action, fname, event, args...)
 }
 
 // DebugDepth provides a standardised logging output for a nested
 // debugging log call.
-func DebugDepth(d int, id interface{}, action, fname, event string, args ...interface{}) {
+func DebugDepth(d int, id interface{}, action, fname string, event interface{}, args ...interface{}) {
 	const lev = "DEBUG"
 	write(d, id, lev, action, fname, event, args...)
 }
 
 // Err provides a standardised logging output.
-func Err(id interface{}, action, fname, event string, args ...interface{}) {
+func Err(id interface{}, action, fname string, event interface{}, args ...interface{}) {
 	var lev = colour.Red("ERROR")
-	write(3, id, lev, action, fname, colour.Red(event), args...)
+	write(3, id, lev, action, fname, colour.Red(errToString(event)), args...)
 }
 
 // ErrDepth provides a standardised logging output for a nested error
 // call.
-func ErrDepth(d int, id interface{}, action, fname, event string, args ...interface{}) {
+func ErrDepth(d int, id interface{}, action, fname string, event interface{}, args ...interface{}) {
 	var lev = colour.Red("ERROR")
-	write(3+d, id, lev, action, fname, event, args...)
+	write(3+d, id, lev, action, fname, colour.Red(errToString(event)), args...)
 }
 
 // Trace provides a standardised logging output.
-func Trace(id interface{}, action, fname, event string, args ...interface{}) {
+func Trace(id interface{}, action, fname string, event interface{}, args ...interface{}) {
 	const lev = "TRACE"
 	write(3, id, lev, action, fname, event, args...)
 }
 
 // Sys provides a standardised logging output.
-func Sys(id interface{}, action, fname, event string, args ...interface{}) {
+func Sys(id interface{}, action, fname string, event interface{}, args ...interface{}) {
 	const lev = "SYSTEM"
 	write(3, id, lev, action, fname, event, args...)
 }
 
 // write provides a standardised log output.
-func write(depth int, id interface{}, lev, action, fname, event string, args ...interface{}) {
+func write(depth int, id interface{}, lev, action, fname string, v interface{}, args ...interface{}) {
+	event := errToString(v)
 	if len(args)&1 > 0 {
 		log.Output(3, fmt.Sprintf(
 			"%s: need pairs of arguments %q", lev, args))
@@ -134,7 +148,7 @@ func write(depth int, id interface{}, lev, action, fname, event string, args ...
 }
 
 // writelog provides a standardised log output.
-func writelog(depth int, id interface{}, lev, action, fname, event string, args ...interface{}) {
+func writelog(depth int, id interface{}, lev, action, fname string, event interface{}, args ...interface{}) {
 	if len(args)&1 > 0 {
 		log.Output(3, fmt.Sprintf(
 			"%s: need pairs of arguments %q", lev, args))

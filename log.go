@@ -65,3 +65,7 @@ func New(out io.Writer, prefix string, flag int) *Logger {
 		Colour: uint16(term.Reset),
 	}
 }
+
+// Stop is an empty function used to halt the delve debugger.
+func Stop() {
+}
