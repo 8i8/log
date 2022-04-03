@@ -10,9 +10,13 @@ import (
 // colour holds a colour from the term library.
 var colour term.Colour
 
-// errToString returns a string when given either an error or a string.
-func errToString(v interface{}) (str string) {
+var ColourErrors bool
+
+// toString returns a string when given either an error or a string.
+func toString(v interface{}) (str string) {
 	switch t := v.(type) {
+	case fmt.Stringer:
+		str = t.String()
 	case error:
 		str = t.Error()
 	case string:
@@ -57,14 +61,19 @@ func DebugDepth(d int, id interface{}, action, fname string, event interface{}, 
 // Err provides a standardised logging output.
 func Err(id interface{}, action, fname string, event interface{}, args ...interface{}) {
 	var lev = colour.Red("ERROR")
-	write(3, id, lev, action, fname, colour.Red(errToString(event)), args...)
+	write(3, id, lev, action, fname, colour.Red(toString(event)), args...)
 }
 
 // ErrDepth provides a standardised logging output for a nested error
 // call.
 func ErrDepth(d int, id interface{}, action, fname string, event interface{}, args ...interface{}) {
-	var lev = colour.Red("ERROR")
-	write(3+d, id, lev, action, fname, colour.Red(errToString(event)), args...)
+	var lev = "ERROR"
+	evnt := toString(event)
+	if ColourErrors {
+		lev = colour.Red("ERROR")
+		evnt = colour.Red(evnt)
+	}
+	write(3+d, id, lev, action, fname, evnt, args...)
 }
 
 // Trace provides a standardised logging output.
@@ -81,7 +90,7 @@ func Sys(id interface{}, action, fname string, event interface{}, args ...interf
 
 // write provides a standardised log output.
 func write(depth int, id interface{}, lev, action, fname string, v interface{}, args ...interface{}) {
-	event := errToString(v)
+	event := toString(v)
 	if len(args)&1 > 0 {
 		log.Output(3, fmt.Sprintf(
 			"%s: need pairs of arguments %q", lev, args))
