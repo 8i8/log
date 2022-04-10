@@ -60,8 +60,13 @@ func DebugDepth(d int, id interface{}, action, fname string, event interface{}, 
 
 // Err provides a standardised logging output.
 func Err(id interface{}, action, fname string, event interface{}, args ...interface{}) {
-	var lev = colour.Red("ERROR")
-	write(3, id, lev, action, fname, colour.Red(toString(event)), args...)
+	var lev = "ERROR"
+	evnt := toString(event)
+	if ColourErrors {
+		lev = colour.Red(lev)
+		event = colour.Red(evnt)
+	}
+	write(3, id, lev, action, fname, evnt, args...)
 }
 
 // ErrDepth provides a standardised logging output for a nested error
@@ -203,20 +208,20 @@ func writelog(depth int, id interface{}, lev, action, fname string, event interf
 	case 0:
 		log.Output(depth, fmt.Sprintf(
 			"%s:[action:%s][fname:%s][event:%s]",
-			colour.White(lev), action, fname, event))
+			lev, action, fname, event))
 	case 2:
 		log.Output(depth, fmt.Sprintf(
 			"%s:[action:%s][fname:%s][event:%s][%s:%v]",
-			colour.White(lev), action, fname, event, args[0], args[1]))
+			lev, action, fname, event, args[0], args[1]))
 	case 4:
 		log.Output(depth, fmt.Sprintf(
 			"%s:[action:%s][fname:%s][event:%s][%s:%v][%s:%v]",
-			colour.White(lev), action, fname, event, args[0], args[1],
+			lev, action, fname, event, args[0], args[1],
 			args[2], args[3]))
 	case 6:
 		log.Output(depth, fmt.Sprintf(
 			"%s:[action:%s][fname:%s][event:%s][%s:%v][%s:%v][%s:%v]",
-			colour.White(lev), action, fname, event, args[0], args[1],
+			lev, action, fname, event, args[0], args[1],
 			args[2], args[3], args[4], args[5]))
 	default:
 		log.Output(depth, fmt.Sprint("default reached reached in log write()"))
