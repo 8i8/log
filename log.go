@@ -1,6 +1,7 @@
 package log
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net/url"
@@ -63,5 +64,6 @@ func New(out io.Writer, prefix string, flag int) *Logger {
 }
 
 // Stop is an empty function used to halt the delve debugger.
-func Stop() {
+func Stop(fname ...string) {
+	fmt.Println("stop:", fname)
 }

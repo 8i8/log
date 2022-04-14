@@ -12,6 +12,10 @@ var colour term.Colour
 
 var ColourErrors bool
 
+func what(v interface{}) string {
+	return fmt.Sprintf("!(%T, %v)", v, v)
+}
+
 // toString returns a string when given either an error or a string.
 func toString(v interface{}) (str string) {
 	switch t := v.(type) {
@@ -22,7 +26,7 @@ func toString(v interface{}) (str string) {
 	case string:
 		str = t
 	default:
-		panic("unknown type")
+		panic("unknown type: "+what(v))
 	}
 	return
 }
