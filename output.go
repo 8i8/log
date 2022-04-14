@@ -25,6 +25,8 @@ func toString(v interface{}) (str string) {
 		str = t.Error()
 	case string:
 		str = t
+	case nil:
+		str = "<nil>"
 	default:
 		panic("unknown type: "+what(v))
 	}
